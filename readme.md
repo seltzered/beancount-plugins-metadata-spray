@@ -18,6 +18,7 @@ In general, the plugin works by writing a plugin directive of "beancount_plugins
 ### Example: Account open entries
 
 A beancount file that looks like:
+
 ```
 plugin "beancount_plugins_metadata_spray.plugins.metadata_spray" "{
     'sprays': [{ 'spray_type': 'account_open',
@@ -37,6 +38,7 @@ plugin "beancount_plugins_metadata_spray.plugins.metadata_spray" "{
 ```
 
 Will result in entries having metadata, appearing after beancount loader something similar to this:
+
 ```
 2018-10-20 open Assets:MyBrokerage
 2018-10-20 open Assets:MyBrokerage:HOOLI
