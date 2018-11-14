@@ -167,5 +167,6 @@ class TestMetadataSpray(unittest.TestCase):
             account_entries['Assets:MyBrokerage:HOOLI'][0].meta['portfolio'],
             'tech')
         self.assertEqual(
-            account_entries['Assets:OtherBrokerage:HOOLI'][0].meta['portfolio'],
+            account_entries['Assets:OtherBrokerage:HOOLI'][
+                0].meta['portfolio'],
             'tech')
