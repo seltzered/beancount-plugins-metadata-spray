@@ -37,11 +37,13 @@ def metadata_spray(entry,
     for metadata_key in metadata_dict:
         if metadata_key in entry_meta:
             if replace_type == 'return_error':
+                error_meta = data.new_metadata(
+                    '<metadata_spray>', entry[0].meta['lineno'])
                 errors.append(
                     MetadataSprayError(
-                        metadata_spray_error_meta,
-                        "Existing metadata {} found in entry, skipping",
-                        metadata_key))
+                        error_meta,
+                        "Existing metadata \'{}\' found in account \'{}\', skipping".format(
+                            metadata_key, entry[0].account), None))
                 continue
             elif replace_type == 'dont_overwrite':
                 continue
@@ -99,7 +101,8 @@ def metadata_spray_entries(entries, options_map, config_str):
             errors.append(
                 MetadataSprayError(metadata_spray_error_meta,
                                    "Missing spray or replace type, \
-                    skipping this spray operation")
+                    skipping this spray operation",
+                                   None)
             )
             continue
 
@@ -108,8 +111,9 @@ def metadata_spray_entries(entries, options_map, config_str):
             errors.append(
                 MetadataSprayError(metadata_spray_error_meta,
                                    "Invalid spray type: {} \
-                                skipping this spray operation",
-                                   spray_type))
+                                skipping this spray operation".format(
+                                       spray_type),
+                                   None))
             continue
 
         replace_type = spray['replace_type']
@@ -117,8 +121,9 @@ def metadata_spray_entries(entries, options_map, config_str):
             errors.append(
                 MetadataSprayError(metadata_spray_error_meta,
                                    "Invalid spray type: {} \
-                                skipping this spray operation",
-                                   spray_type))
+                                skipping this spray operation".format(
+                                       spray_type),
+                                   None))
             continue
 
         if spray_type == 'account_open':
